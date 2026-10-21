@@ -171,7 +171,7 @@
                     <span class="icono-detalle" aria-hidden="true">⌖</span>
                     <div>
                         <h3>Lugar</h3>
-                        <p>Salón Auditorio de la Carrera Ing. Comercial (UNSXX)</p>
+                        <p>Salón Auditorio de la Carrera Ing. Agronómica camino a Uncia (UNSXX)</p>
                     </div>
                 </div>
             </div>
@@ -225,31 +225,12 @@
                 la billetera móvil habilitada por la familia.
             </p>
             <div class="qr-marco">
-                <!--
-                    QR PENDIENTE.
-                    Cuando la familia entregue su QR oficial,
-                    guarda la imagen como qr-aporte.png en esta carpeta.
-                    El código real no debe inventarse.
-                -->
-                <div id="qrPendiente" class="qr-placeholder">
-                    <svg viewBox="0 0 100 100" aria-hidden="true">
-                        <rect x="5" y="5" width="28" height="28" fill="none" stroke="currentColor" stroke-width="7"/>
-                        <rect x="67" y="5" width="28" height="28" fill="none" stroke="currentColor" stroke-width="7"/>
-                        <rect x="5" y="67" width="28" height="28" fill="none" stroke="currentColor" stroke-width="7"/>
-                        <path d="M43 5h7v7h-7z M43 19h7v7h-7z M57 40h7v7h-7z M43 47h7v7h-7z M57 54h7v7h-7z M71 43h7v7h-7z M85 43h7v7h-7z M43 68h7v7h-7z M57 75h7v7h-7z M71 68h7v7h-7z M85 82h7v7h-7z M43 89h7v6h-7z M57 89h7v6h-7z" fill="currentColor"/>
-                    </svg>
-                    <p>QR de la billetera móvil</p>
-                    <small>Imagen oficial pendiente</small>
-                </div>
-                <!--
-                    Cuando tengas el QR real, elimina el bloque
-                    anterior y coloca aquí:
                     <img class="imagen-qr" src="qr-aporte.png"
                     alt="QR oficial de la billetera móvil">
-                -->
+                
             </div>
             <p class="qr-nota">
-                Tu cariño y tus buenos deseos son lo más importante.
+                Tu cariño y tus buenos deseos son lo más importante toma una pequeña captura a la pantalla para obtener el QR.
                 ¡Gracias por ser parte de esta alegría!
             </p>
         </section>
@@ -268,6 +249,11 @@
             </p>
         </footer>
     </main>
+     <!--* REPRODUCTOR DE MUSICA *-->
+    <audio id="musicaFondo" loop preload="none">
+        <source src="musica.mpeg" type="audio/mpeg">
+        Tu navegador no admite audio HTML5.
+    </audio>
     <!-- CONTROL DE MUSICA -->
     <button
         id="botonMusica"

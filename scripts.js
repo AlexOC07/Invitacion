@@ -184,15 +184,12 @@ function actualizarCuenta() {
 }
 actualizarCuenta();
 temporizador = setInterval(actualizarCuenta, 1000);
-// ==========================================
-// MUSICA AMBIENTAL OPCIONAL
-// ==========================================
-let contextoAudio = null;
-let osciladores = [];
-let ganancias = [];
+//* ==========================================*
+//* MUSICA DE FONDO CON ARCHIVO MP3 *
+//* ==========================================*
+const musicaFondo = $('#musicaFondo');
 let musicaActiva = false;
-let generacionAudio = 0;
-function actualizarBotonMusica(activa, mensaje) {
+function actualizarBotonMusica(activa) {
     botonMusica.classList.toggle('activa', activa);
     botonMusica.setAttribute(
         'aria-pressed',
@@ -200,111 +197,41 @@ function actualizarBotonMusica(activa, mensaje) {
     );
     botonMusica.setAttribute(
         'aria-label',
-        activa
-            ? 'Desactivar música ambiental'
-            : 'Activar música ambiental'
+        activa ? 'Desactivar música' : 'Activar música'
     );
-    iconoMusica.textContent = '♫';
-    textoMusica.textContent = mensaje;
+    iconoMusica.textContent = activa ? '♫' : '♪';
+    textoMusica.textContent = activa
+        ? 'Desactivar música'
+        : 'Activar música';
 }
 async function iniciarMusica() {
-    const AudioContextClase =
-        window.AudioContext || window.webkitAudioContext;
-    if (!AudioContextClase) {
-        textoMusica.textContent = 'Audio no disponible';
+    if (!musicaFondo) {
+        console.error('No se encontró el reproductor de música.');
         return;
     }
-    const miGeneracion = ++generacionAudio;
     try {
-        if (!contextoAudio || contextoAudio.state === 'closed') {
-            contextoAudio = new AudioContextClase();
-        }
-        if (contextoAudio.state === 'suspended') {
-            await contextoAudio.resume();
-        }
-        // Si el usuario desactivó la música mientras se iniciaba,
-        // no debemos volver a encenderla.
-        if (miGeneracion !== generacionAudio) {
-            return;
-        }
-        const notas = [130.81, 164.81, 196.00];
-        const nuevosOsciladores = [];
-        const nuevasGanancias = [];
-        notas.forEach((frecuencia, indice) => {
-            const oscilador = contextoAudio.createOscillator();
-            const ganancia = contextoAudio.createGain();
-            oscilador.type = 'sine';
-            oscilador.frequency.value = frecuencia;
-            // Variaciones leves para crear un fondo ambiental.
-            oscilador.detune.value = indice * 2;
-            ganancia.gain.value = 0;
-            oscilador.connect(ganancia);
-            ganancia.connect(contextoAudio.destination);
-            oscilador.start();
-            ganancia.gain.setTargetAtTime(
-                0.018,
-                contextoAudio.currentTime,
-                1.2
-            );
-            nuevosOsciladores.push(oscilador);
-            nuevasGanancias.push(ganancia);
-        });
-        osciladores = nuevosOsciladores;
-        ganancias = nuevasGanancias;
+        musicaFondo.volume = 0.35;
+        await musicaFondo.play();
         musicaActiva = true;
-        actualizarBotonMusica(
-            true,
-            'Desactivar música'
-        );
+        actualizarBotonMusica(true);
     } catch (error) {
-        console.error('No se pudo iniciar el audio:', error);
         musicaActiva = false;
-        actualizarBotonMusica(
-            false,
-            'Intentar música'
+        actualizarBotonMusica(false);
+        console.error(
+            'No se pudo reproducir la música:',
+            error
+        );
+        alert(
+            'No se pudo reproducir la canción. ' +
+            'Comprueba que musica.mp3 esté en la carpeta ' +
+            'de la invitación.'
         );
     }
 }
 function detenerMusica() {
-    // Invalida cualquier inicio de audio pendiente.
-    generacionAudio++;
+    musicaFondo.pause();
     musicaActiva = false;
-    actualizarBotonMusica(
-        false,
-        'Activar música'
-    );
-    if (!contextoAudio || contextoAudio.state === 'closed') {
-        osciladores = [];
-        ganancias = [];
-        return;
-    }
-    const audioActual = contextoAudio;
-    const osciladoresActuales = [...osciladores];
-    const gananciasActuales = [...ganancias];
-    osciladores = [];
-    ganancias = [];
-    const ahora = audioActual.currentTime;
-    gananciasActuales.forEach((ganancia) => {
-        ganancia.gain.cancelScheduledValues(ahora);
-        ganancia.gain.setTargetAtTime(0, ahora, 0.12);
-    });
-    setTimeout(() => {
-        osciladoresActuales.forEach((oscilador) => {
-            try {
-                oscilador.stop();
-                oscilador.disconnect();
-            } catch (error) {
-                // El oscilador podría haberse detenido.
-            }
-        });
-        gananciasActuales.forEach((ganancia) => {
-            try {
-                ganancia.disconnect();
-            } catch (error) {
-                // El nodo podría haberse desconectado.
-            }
-        });
-    }, 700);
+    actualizarBotonMusica(false);
 }
 botonMusica.addEventListener('click', () => {
     if (musicaActiva) {
@@ -313,6 +240,7 @@ botonMusica.addEventListener('click', () => {
         iniciarMusica();
     }
 });
+actualizarBotonMusica(false);
 // ==========================================
 // CONFIRMACION POR WHATSAPP
 // ==========================================
