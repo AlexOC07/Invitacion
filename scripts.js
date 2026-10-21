@@ -3,7 +3,7 @@
 // DATOS PRINCIPALES DE LA INVITACION
 // ==========================================
 const CONFIG = {
-    whatsapp: '59167525973',
+    whatsapp: '59174232166',
     graduado: 'Kevin Cristian Guzman Javier',
     carrera: 'Licenciado en Contaduría Pública',
     fecha: '2026-10-23T09:00:00-04:00',
@@ -249,7 +249,7 @@ function prepararWhatsApp() {
         `¡Hola! Confirmo mi asistencia a la graduación de ` +
         `${CONFIG.graduado}, ${CONFIG.carrera}. ` +
         `El acto será el viernes 23 de octubre de 2026 a las 09:00 a. m. ` +
-        `en el Salón Auditorio de la Carrera Ing. Comercial (UNSXX). ` +
+        `en el Salón Auditorio de la Carrera Ing. Agronómica camino a Uncia (UNSXX). ` +
         `También quisiera acompañarlos en la celebración posterior ` +
         `en el domicilio de la calle Topater N.º 141.`;
     const enlace =
