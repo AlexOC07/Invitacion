@@ -1,0 +1,855 @@
+:root {
+    --fondo: #080608;
+    --fondo-claro: #190b10;
+    --rojo: #e3293d;
+    --rojo-claro: #ff7180;
+    --rojo-oscuro: #a70f27;
+    --blanco: #fff5f6;
+    --texto: #e0d5d8;
+    --borde: rgba(227, 41, 61, 0.38);
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    scroll-behavior: smooth;
+}
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: var(--fondo);
+    color: var(--blanco);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    line-height: 1.8;
+}
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -3;
+    pointer-events: none;
+    background:
+        radial-gradient(
+            ellipse at 50% 10%,
+            rgba(72, 12, 26, 0.35),
+            transparent 55%
+        ),
+        linear-gradient(180deg, #10080c, #080608 75%);
+}
+#particulas {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+.fondo-luz {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+    background:
+        radial-gradient(
+            circle at 10% 30%,
+            rgba(227, 41, 61, 0.07),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 90% 75%,
+            rgba(227, 41, 61, 0.07),
+            transparent 35%
+        );
+}
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+button {
+    font-family: inherit;
+}
+a {
+    color: inherit;
+    text-decoration: none;
+}
+::selection {
+    background: var(--rojo);
+    color: #ffffff;
+}
+/* ==========================================
+    PORTADA CINEMATOGRAFICA
+   ========================================== */
+.portada {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    min-height: 100svh;
+    padding: 30px 22px;
+    overflow-y: auto;
+    background:
+        radial-gradient(
+            ellipse at 50% 45%,
+            rgba(53, 13, 26, 0.8),
+            rgba(8, 6, 8, 0.98) 75%
+        );
+    transition:
+        opacity 1s ease,
+        visibility 1s ease,
+        transform 1s ease;
+}
+.marco-portada {
+    position: absolute;
+    inset: 18px;
+    border: 1px solid var(--borde);
+    pointer-events: none;
+}
+.marco-portada::before,
+.marco-portada::after {
+    content: "✦";
+    position: absolute;
+    color: var(--rojo-claro);
+    font-size: 23px;
+}
+.marco-portada::before {
+    top: -14px;
+    left: 50%;
+    padding: 0 14px;
+    background: var(--fondo);
+    transform: translateX(-50%);
+}
+.marco-portada::after {
+    bottom: -14px;
+    left: 50%;
+    padding: 0 14px;
+    background: var(--fondo);
+    transform: translateX(-50%);
+}
+.contenido-portada {
+    width: 100%;
+    max-width: 690px;
+    padding: 36px 10px;
+    text-align: center;
+    animation: aparecer 1.5s ease both;
+}
+.etiqueta,
+.sobrelinea {
+    display: block;
+    color: var(--rojo-claro);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+.simbolo-graduacion {
+    display: grid;
+    place-items: center;
+    width: 76px;
+    height: 76px;
+    margin: 35px auto 24px;
+    border: 1px solid var(--borde);
+    border-radius: 50%;
+    color: var(--rojo-claro);
+    box-shadow: 0 0 35px rgba(227, 41, 61, 0.14);
+    animation: flotar 4s ease-in-out infinite;
+}
+.simbolo-graduacion svg {
+    width: 48px;
+    height: 42px;
+}
+.texto-portada {
+    color: var(--texto);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(20px, 4vw, 27px);
+    font-style: italic;
+}
+.contenido-portada h1 {
+    margin: 16px 0 20px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 7vw, 65px);
+    font-weight: 500;
+    line-height: 1.1;
+}
+.linea-dorada {
+    width: 100px;
+    height: 1px;
+    margin: 27px auto;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--rojo),
+        transparent
+    );
+}
+.invitacion-portada {
+    max-width: 450px;
+    margin: 0 auto 32px;
+    color: var(--texto);
+    font-size: 13px;
+    line-height: 2;
+}
+.boton-principal {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 13px;
+    min-height: 50px;
+    padding: 12px 25px;
+    border: 1px solid var(--rojo-claro);
+    border-radius: 50px;
+    background: linear-gradient(
+        135deg,
+        #ff5368,
+        #a70f27
+    );
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 5px 24px rgba(227, 41, 61, 0.12);
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+.boton-principal:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 9px 35px rgba(227, 41, 61, 0.28);
+}
+.boton-principal:focus-visible,
+.boton-musica:focus-visible {
+    outline: 2px solid var(--rojo-claro);
+    outline-offset: 4px;
+}
+.indicacion {
+    margin-top: 35px;
+    color: #a69ba0;
+    font-size: 9px;
+    letter-spacing: 2px;
+}
+/* TRANSICION DE PORTADA */
+.portada.cerrando {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.04);
+    pointer-events: none;
+}
+.oculto {
+    display: none !important;
+}
+/* ==========================================
+    CONTENIDO PRINCIPAL
+   ========================================== */
+.invitacion {
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 55px 24px 35px;
+    animation: aparecer 1.4s ease both;
+}
+.encabezado {
+    padding: 20px 0 35px;
+    text-align: center;
+}
+.encabezado .texto-intro {
+    margin-top: 22px;
+    color: var(--texto);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-style: italic;
+}
+.encabezado h2,
+.seccion h2 {
+    margin: 5px 0 15px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 6vw, 46px);
+    font-weight: 500;
+    line-height: 1.2;
+}
+.ornamento {
+    color: var(--rojo-claro);
+    font-size: 12px;
+    letter-spacing: 3px;
+}
+/* ==========================================
+    SECCIONES
+   ========================================== */
+.seccion {
+    position: relative;
+    margin-bottom: 24px;
+    padding: 44px 30px;
+    border: 1px solid var(--borde);
+    background: linear-gradient(
+        145deg,
+        rgba(25, 11, 16, 0.96),
+        rgba(8, 6, 8, 0.96)
+    );
+    text-align: center;
+}
+.graduado {
+    overflow: hidden;
+}
+.graduado::before {
+    content: "";
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: rgba(227, 41, 61, 0.08);
+    filter: blur(45px);
+    transform: translateX(-50%);
+    pointer-events: none;
+}
+.icono-toga {
+    position: relative;
+    width: 82px;
+    margin: 0 auto 24px;
+    color: var(--rojo-claro);
+}
+.icono-toga svg {
+    display: block;
+    width: 100%;
+    overflow: visible;
+}
+.titulo-graduacion {
+    margin: 13px 0 -8px;
+    color: var(--blanco);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(43px, 9vw, 73px);
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+.nombre-graduado {
+    color: var(--rojo-claro);
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(53px, 10vw, 90px);
+    font-weight: 400;
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+}
+.nombre-graduado span {
+    display: block;
+    margin-top: -4px;
+    color: var(--blanco);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(19px, 4vw, 29px);
+    font-weight: 500;
+    letter-spacing: 2px;
+}
+.separador-nombre {
+    width: 90px;
+    height: 1px;
+    margin: 25px auto;
+    background: var(--rojo);
+}
+.titulo-profesional {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(22px, 4.5vw, 32px);
+    line-height: 1.3;
+}
+.universidad {
+    margin-top: 13px;
+    color: var(--rojo-claro);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    line-height: 2;
+}
+.mensaje {
+    max-width: 540px;
+    margin: 26px auto 0;
+    color: var(--texto);
+    font-size: 13px;
+    line-height: 2;
+}
+.mensaje-destacado {
+    margin-top: 22px;
+    color: var(--rojo-claro);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-style: italic;
+    line-height: 1.5;
+}
+/* ==========================================
+    HOMENAJE A LOS PADRES
+   ========================================== */
+.padres {
+    position: relative;
+    max-width: 570px;
+    margin: 38px auto 0;
+    padding: 30px 22px;
+    border: 1px solid var(--borde);
+    background: linear-gradient(
+        145deg,
+        rgba(227, 41, 61, 0.07),
+        rgba(0, 0, 0, 0.2)
+    );
+}
+.linea-padres {
+    width: 70px;
+    height: 2px;
+    margin: 0 auto 25px;
+    background: var(--rojo);
+}
+.padres h3 {
+    margin: 12px 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 27px;
+    font-weight: 500;
+    line-height: 1.4;
+}
+.texto-padres {
+    max-width: 420px;
+    margin: 0 auto 25px;
+    color: var(--texto);
+    font-size: 12px;
+    line-height: 2;
+}
+.padre {
+    padding: 17px 5px;
+    border-top: 1px solid rgba(227, 41, 61, 0.2);
+}
+.adorno-padre {
+    color: var(--rojo-claro);
+    font-size: 17px;
+}
+.etiqueta-padre {
+    margin-top: 5px;
+    color: var(--rojo-claro);
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+.padre h4 {
+    margin-top: 4px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 25px;
+    font-weight: 500;
+    overflow-wrap: anywhere;
+}
+.dedicatoria-padres {
+    margin-top: 15px;
+    color: var(--rojo-claro);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-style: italic;
+    line-height: 1.6;
+}
+/* ==========================================
+    CUENTA REGRESIVA
+   ========================================== */
+.cuenta {
+    padding: 35px 20px;
+}
+.cuenta h2 {
+    margin-top: 12px;
+}
+.temporizador {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+    max-width: 510px;
+    margin: 25px auto 18px;
+}
+.tiempo {
+    padding: 17px 4px 12px;
+    border: 1px solid var(--borde);
+    background: rgba(3, 3, 6, 0.6);
+}
+.tiempo span {
+    display: block;
+    color: var(--rojo-claro);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(26px, 6vw, 43px);
+    line-height: 1.2;
+}
+.tiempo small {
+    color: #b7aab0;
+    font-size: 8px;
+    letter-spacing: 1.3px;
+}
+.estado-cuenta {
+    color: var(--texto);
+    font-size: 11px;
+}
+/* ==========================================
+    DATOS DEL EVENTO
+   ========================================== */
+.descripcion-seccion {
+    max-width: 540px;
+    margin: 0 auto 25px;
+    color: var(--texto);
+    font-size: 12px;
+    line-height: 2;
+}
+.tarjeta-evento {
+    max-width: 570px;
+    margin: 0 auto;
+    padding: 10px 22px;
+    border: 1px solid rgba(227, 41, 61, 0.2);
+    background: rgba(3, 3, 6, 0.45);
+    text-align: left;
+}
+.detalle {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    padding: 20px 0;
+}
+.detalle + .detalle {
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+.icono-detalle {
+    flex: 0 0 30px;
+    color: var(--rojo-claro);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px;
+    line-height: 1.2;
+    text-align: center;
+}
+.detalle h3 {
+    margin-bottom: 4px;
+    color: var(--rojo-claro);
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+.detalle p {
+    color: var(--blanco);
+    font-size: 12px;
+    line-height: 1.9;
+    overflow-wrap: anywhere;
+}
+/* ==========================================
+    CELEBRACION EN EL DOMICILIO
+   ========================================== */
+.celebracion {
+    overflow: hidden;
+}
+.brillo-circular {
+    display: grid;
+    place-items: center;
+    width: 65px;
+    height: 65px;
+    margin: 0 auto 25px;
+    border: 1px solid var(--borde);
+    border-radius: 50%;
+    color: var(--rojo-claro);
+    font-size: 32px;
+    box-shadow: 0 0 30px rgba(227, 41, 61, 0.14);
+}
+.tarjeta-casa {
+    padding: 28px 20px;
+    text-align: center;
+}
+.icono-casa {
+    color: var(--rojo-claro);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 50px;
+    line-height: 1.3;
+}
+.tarjeta-casa h3 {
+    margin-top: 8px;
+    color: var(--rojo-claro);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 500;
+}
+.direccion {
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: 500;
+}
+.nota-evento {
+    margin-top: 5px;
+    color: #b7aab0;
+    font-size: 11px;
+}
+.frase-final {
+    margin: 32px auto 27px;
+    color: var(--rojo-claro);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(22px, 5vw, 31px);
+    font-style: italic;
+    line-height: 1.5;
+}
+.boton-whatsapp {
+    max-width: 100%;
+    font-size: 10px;
+}
+.boton-whatsapp span {
+    font-size: 19px;
+}
+.nota-confirmacion {
+    margin-top: 15px;
+    color: #b7aab0;
+    font-size: 10px;
+}
+/* ==========================================
+    CODIGO QR DE LA BILLETERA MOVIL
+   ========================================== */
+.qr-aprecio {
+    padding: 38px 24px;
+    border-color: rgba(227, 41, 61, 0.45);
+    background:
+        radial-gradient(
+            circle at 50% 35%,
+            rgba(227, 41, 61, 0.12),
+            transparent 65%
+        ),
+        linear-gradient(145deg, #190b10, #080608);
+}
+.qr-aprecio h2 {
+    max-width: 500px;
+    margin: 14px auto;
+    color: var(--blanco);
+    font-size: clamp(29px, 5vw, 40px);
+}
+.qr-marco {
+    display: grid;
+    place-items: center;
+    width: min(100%, 250px);
+    aspect-ratio: 1;
+    margin: 26px auto 20px;
+    padding: 12px;
+    border: 2px solid var(--rojo);
+    border-radius: 4px;
+    background: #ffffff;
+    box-shadow:
+        0 0 18px rgba(227, 41, 61, 0.12),
+        0 0 40px rgba(227, 41, 61, 0.07);
+}
+.qr-placeholder {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    border: 1px dashed #b31c32;
+    background: #f4f0f0;
+    color: #171014;
+    text-align: center;
+}
+.qr-placeholder svg {
+    width: 78px;
+    height: 78px;
+    margin-bottom: 10px;
+    color: #b31c32;
+}
+.qr-placeholder p {
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.5;
+}
+.qr-placeholder small {
+    margin-top: 5px;
+    font-size: 9px;
+    line-height: 1.5;
+}
+.imagen-qr {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #ffffff;
+}
+.qr-nota {
+    max-width: 390px;
+    margin: 0 auto;
+    color: var(--rojo-claro);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-style: italic;
+    line-height: 1.6;
+}
+/* ==========================================
+    AGRADECIMIENTOS FINALES
+   ========================================== */
+.pie {
+    padding: 20px 0 35px;
+    text-align: center;
+}
+.gracias {
+    margin-top: 17px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 23px;
+    font-style: italic;
+}
+.firma {
+    margin-top: 6px;
+    color: var(--rojo-claro);
+    font-family: 'Great Vibes', cursive;
+    font-size: 34px;
+}
+.pie-pequeno {
+    margin-top: 22px;
+    color: #a69ba0;
+    font-size: 8px;
+    letter-spacing: 2px;
+}
+/* ==========================================
+    BOTON DE MUSICA
+   ========================================== */
+.boton-musica {
+    position: fixed;
+    right: 16px;
+    bottom: 16px;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    min-height: 42px;
+    padding: 9px 15px;
+    border: 1px solid var(--borde);
+    border-radius: 30px;
+    background: rgba(8, 6, 8, 0.95);
+    color: var(--rojo-claro);
+    font-size: 10px;
+    cursor: pointer;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(12px);
+    transition: background 0.3s ease;
+}
+.boton-musica:hover {
+    background: #210b12;
+}
+#iconoMusica {
+    font-size: 18px;
+}
+.boton-musica.activa #iconoMusica {
+    animation: bailar 1s ease-in-out infinite alternate;
+}
+/* ==========================================
+    ANIMACIONES
+   ========================================== */
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes flotar {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+}
+@keyframes bailar {
+    from {
+        transform: rotate(-12deg) scale(0.95);
+    }
+    to {
+        transform: rotate(12deg) scale(1.15);
+    }
+}
+/* ==========================================
+    DISEÑO PARA CELULARES
+   ========================================== */
+@media (max-width: 600px) {
+    .marco-portada {
+        inset: 12px;
+    }
+    .contenido-portada {
+        padding: 28px 10px;
+    }
+    .simbolo-graduacion {
+        width: 62px;
+        height: 62px;
+        margin: 25px auto 20px;
+    }
+    .indicacion {
+        font-size: 8px;
+        letter-spacing: 1px;
+    }
+    .invitacion {
+        padding: 35px 13px 25px;
+    }
+    .encabezado {
+        padding: 15px 0 25px;
+    }
+    .seccion {
+        margin-bottom: 16px;
+        padding: 32px 17px;
+    }
+    .sobrelinea {
+        font-size: 9px;
+        letter-spacing: 2px;
+    }
+    .nombre-graduado {
+        font-size: clamp(49px, 13vw, 68px);
+    }
+    .nombre-graduado span {
+        font-size: 20px;
+        letter-spacing: 1px;
+    }
+    .universidad {
+        font-size: 9px;
+        letter-spacing: 1px;
+    }
+    .temporizador {
+        gap: 6px;
+    }
+    .tiempo {
+        padding: 13px 2px 10px;
+    }
+    .tiempo small {
+        font-size: 7px;
+        letter-spacing: 0.5px;
+    }
+    .tarjeta-evento {
+        padding: 7px 14px;
+    }
+    .detalle {
+        gap: 10px;
+    }
+    .detalle p {
+        font-size: 11px;
+    }
+    .padres {
+        padding: 25px 14px;
+    }
+    .padres h3 {
+        font-size: 24px;
+    }
+    .padre h4 {
+        font-size: 23px;
+    }
+    .boton-whatsapp {
+        padding: 12px 16px;
+        font-size: 9px;
+    }
+    .boton-musica {
+        right: 10px;
+        bottom: 10px;
+        min-height: 40px;
+        padding: 7px 12px;
+    }
+}
+/* RESPETAR PREFERENCIAS DE MOVIMIENTO */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

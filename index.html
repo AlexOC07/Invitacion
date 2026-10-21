@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#080608">
+    <meta name="description" content="Invitación a la graduación de Kevin Cristian Guzman Javier.">
+    <title>Graduación de Kevin | Invitación Especial</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="estilos.css">
+    <script src="scripts.js" defer></script>
+</head>
+<body>
+    <!-- FONDO ANIMADO -->
+    <canvas id="particulas" aria-hidden="true"></canvas>
+    <div class="fondo-luz" aria-hidden="true"></div>
+    <!-- PORTADA CINEMATOGRAFICA -->
+    <section id="portada" class="portada">
+        <div class="marco-portada"></div>
+        <div class="contenido-portada">
+            <span class="etiqueta">UNA OCASIÓN INOLVIDABLE</span>
+            <div class="simbolo-graduacion" aria-hidden="true">
+                <svg viewBox="0 0 100 75">
+                    <path d="M4 25 L50 4 L96 25 L50 47 Z" fill="currentColor"/>
+                    <path d="M24 36 V51 Q50 72 76 51 V36 L50 49 Z" fill="currentColor" opacity=".85"/>
+                    <path d="M88 29 V52" stroke="currentColor" stroke-width="3" fill="none"/>
+                    <circle cx="88" cy="55" r="4" fill="currentColor"/>
+                </svg>
+            </div>
+            <p class="texto-portada">
+                Hay sueños que merecen celebrarse...
+            </p>
+            <h1>
+                Una nueva historia<br>
+                está por comenzar
+            </h1>
+            <div class="linea-dorada"></div>
+            <p class="invitacion-portada">
+                Acompáñanos a celebrar uno de los logros
+                más importantes en la vida de una gran persona.
+            </p>
+            <button id="abrirInvitacion" class="boton-principal" type="button">
+                <span>Descubrir invitación</span>
+                <span aria-hidden="true">✦</span>
+            </button>
+            <p class="indicacion">
+                UNA CELEBRACIÓN ESPECIAL PARA KEVIN
+            </p>
+        </div>
+    </section>
+    <!-- INVITACION PRINCIPAL -->
+    <main id="invitacion" class="invitacion oculto">
+        <header class="encabezado">
+            <span class="sobrelinea">CON GRAN ALEGRÍA</span>
+            <p class="texto-intro">Tenemos el honor de invitarte a celebrar</p>
+            <h2>Un momento único</h2>
+            <div class="ornamento">✦ ───── ✦ ───── ✦</div>
+        </header>
+        <!-- PRESENTACION DEL GRADUADO -->
+        <section class="graduado seccion">
+            <div class="icono-toga" aria-hidden="true">
+                <svg viewBox="0 0 100 75">
+                    <path d="M4 25 L50 4 L96 25 L50 47 Z" fill="currentColor"/>
+                    <path d="M24 36 V51 Q50 72 76 51 V36 L50 49 Z" fill="currentColor" opacity=".85"/>
+                    <path d="M88 29 V52" stroke="currentColor" stroke-width="3" fill="none"/>
+                    <circle cx="88" cy="55" r="4" fill="currentColor"/>
+                </svg>
+            </div>
+            <p class="sobrelinea">CELEBRAMOS SU GRAN LOGRO</p>
+            <p class="titulo-graduacion">Graduación</p>
+            <h1 class="nombre-graduado">
+                Kevin
+                <span>Cristian Guzman Javier</span>
+            </h1>
+            <div class="separador-nombre"></div>
+            <p class="titulo-profesional">
+                Licenciado en Contaduría Pública
+            </p>
+            <p class="universidad">
+                UNIVERSIDAD NACIONAL SIGLO XX
+            </p>
+            <p class="mensaje">
+                Después de años de esfuerzo, dedicación y perseverancia,
+                llega el momento de celebrar una meta alcanzada y el
+                comienzo de nuevos sueños.
+            </p>
+            <p class="mensaje-destacado">
+                Los grandes logros merecen ser compartidos
+                con las personas que apreciamos.
+            </p>
+            <!-- HOMENAJE A LOS PADRES -->
+            <div class="padres">
+                <div class="linea-padres"></div>
+                <p class="sobrelinea">CON AMOR Y GRATITUD</p>
+                <h3>Este logro también es de ustedes</h3>
+                <p class="texto-padres">
+                    Detrás de cada sueño alcanzado hay amor,
+                    esfuerzo, consejos y personas que nunca
+                    dejan de creer. Hoy celebramos también
+                    a quienes acompañaron este camino con
+                    todo su corazón.
+                </p>
+                <div class="padre">
+                    <span class="adorno-padre" aria-hidden="true">✦</span>
+                    <p class="etiqueta-padre">Su padre</p>
+                    <h4>Javier Guzman Choque</h4>
+                </div>
+                <div class="padre">
+                    <span class="adorno-padre" aria-hidden="true">✦</span>
+                    <p class="etiqueta-padre">Su madre</p>
+                    <h4>Lic. Eliza Javier Juyari</h4>
+                </div>
+                <p class="dedicatoria-padres">
+                    Su amor y apoyo forman parte de este gran logro.
+                    Este triunfo también lleva un pedacito de ustedes.
+                </p>
+            </div>
+        </section>
+        <!-- CUENTA REGRESIVA -->
+        <section class="cuenta seccion">
+            <p class="sobrelinea">EL MOMENTO SE ACERCA</p>
+            <h2>Cuenta regresiva</h2>
+            <div class="temporizador" aria-label="Cuenta regresiva para el acto">
+                <div class="tiempo">
+                    <span id="dias">00</span>
+                    <small>DÍAS</small>
+                </div>
+                <div class="tiempo">
+                    <span id="horas">00</span>
+                    <small>HORAS</small>
+                </div>
+                <div class="tiempo">
+                    <span id="minutos">00</span>
+                    <small>MINUTOS</small>
+                </div>
+                <div class="tiempo">
+                    <span id="segundos">00</span>
+                    <small>SEGUNDOS</small>
+                </div>
+            </div>
+            <p id="estadoCuenta" class="estado-cuenta">
+                Cada segundo nos acerca a un día inolvidable.
+            </p>
+        </section>
+        <!-- ACTO DE GRADUACION -->
+        <section class="evento seccion">
+            <p class="sobrelinea">PRIMER MOMENTO</p>
+            <h2>Acto de graduación</h2>
+            <p class="descripcion-seccion">
+                Acompañemos a Kevin en este importante paso
+                de su vida profesional.
+            </p>
+            <div class="tarjeta-evento">
+                <div class="detalle">
+                    <span class="icono-detalle" aria-hidden="true">◇</span>
+                    <div>
+                        <h3>Fecha</h3>
+                        <p>Viernes, 23 de octubre de 2026</p>
+                    </div>
+                </div>
+                <div class="detalle">
+                    <span class="icono-detalle" aria-hidden="true">◷</span>
+                    <div>
+                        <h3>Hora</h3>
+                        <p>09:00 a. m.</p>
+                    </div>
+                </div>
+                <div class="detalle">
+                    <span class="icono-detalle" aria-hidden="true">⌖</span>
+                    <div>
+                        <h3>Lugar</h3>
+                        <p>Salón Auditorio de la Carrera Ing. Comercial (UNSXX)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- CELEBRACION EN EL DOMICILIO -->
+        <section class="celebracion seccion">
+            <div class="brillo-circular" aria-hidden="true">✦</div>
+            <p class="sobrelinea">SEGUNDO MOMENTO</p>
+            <h2>¡Sigamos celebrando!</h2>
+            <p class="descripcion-seccion">
+                Después del acto, queremos compartir la alegría
+                de este gran logro en un ambiente especial,
+                entre buenos deseos, sonrisas y personas queridas.
+            </p>
+            <div class="tarjeta-evento tarjeta-casa">
+                <div class="icono-casa" aria-hidden="true">⌂</div>
+                <h3>Celebración en el domicilio</h3>
+                <p class="direccion">
+                    Calle Topater N.º 141
+                </p>
+                <p class="nota-evento">
+                    Al finalizar el acto de graduación
+                </p>
+            </div>
+            <p class="frase-final">
+                Tu presencia hará que este logro<br>
+                sea aún más especial.
+            </p>
+            <a
+                id="botonWhatsApp"
+                class="boton-principal boton-whatsapp"
+                href="https://wa.me/59167525973"
+                target="_blank"
+                rel="noopener noreferrer">
+                <span aria-hidden="true">✆</span>
+                Confirmar asistencia por WhatsApp
+            </a>
+            <p class="nota-confirmacion">
+                Será una alegría contar contigo en este día especial.
+            </p>
+        </section>
+        <!-- QR DE LA BILLETERA MOVIL -->
+        <section class="qr-aprecio seccion">
+            <p class="sobrelinea">
+                TU CARIÑO TAMBIÉN NOS ACOMPAÑA
+            </p>
+            <h2>Un pequeño gesto, una gran alegría</h2>
+            <p class="descripcion-seccion">
+                Si no puedes acompañarnos presencialmente,
+                puedes compartir tu muestra de cariño mediante
+                la billetera móvil habilitada por la familia.
+            </p>
+            <div class="qr-marco">
+                <!--
+                    QR PENDIENTE.
+                    Cuando la familia entregue su QR oficial,
+                    guarda la imagen como qr-aporte.png en esta carpeta.
+                    El código real no debe inventarse.
+                -->
+                <div id="qrPendiente" class="qr-placeholder">
+                    <svg viewBox="0 0 100 100" aria-hidden="true">
+                        <rect x="5" y="5" width="28" height="28" fill="none" stroke="currentColor" stroke-width="7"/>
+                        <rect x="67" y="5" width="28" height="28" fill="none" stroke="currentColor" stroke-width="7"/>
+                        <rect x="5" y="67" width="28" height="28" fill="none" stroke="currentColor" stroke-width="7"/>
+                        <path d="M43 5h7v7h-7z M43 19h7v7h-7z M57 40h7v7h-7z M43 47h7v7h-7z M57 54h7v7h-7z M71 43h7v7h-7z M85 43h7v7h-7z M43 68h7v7h-7z M57 75h7v7h-7z M71 68h7v7h-7z M85 82h7v7h-7z M43 89h7v6h-7z M57 89h7v6h-7z" fill="currentColor"/>
+                    </svg>
+                    <p>QR de la billetera móvil</p>
+                    <small>Imagen oficial pendiente</small>
+                </div>
+                <!--
+                    Cuando tengas el QR real, elimina el bloque
+                    anterior y coloca aquí:
+                    <img class="imagen-qr" src="qr-aporte.png"
+                    alt="QR oficial de la billetera móvil">
+                -->
+            </div>
+            <p class="qr-nota">
+                Tu cariño y tus buenos deseos son lo más importante.
+                ¡Gracias por ser parte de esta alegría!
+            </p>
+        </section>
+        <!-- AGRADECIMIENTOS FINALES -->
+        <footer class="pie">
+            <div class="ornamento">✦ ───── ✦ ───── ✦</div>
+            <p class="sobrelinea">CON EL CORAZÓN</p>
+            <p class="gracias">
+                Gracias por ser parte de esta historia.
+            </p>
+            <p class="firma">
+                Con cariño, para Kevin
+            </p>
+            <p class="pie-pequeno">
+                UN NUEVO LOGRO · UN NUEVO COMIENZO
+            </p>
+        </footer>
+    </main>
+    <!-- CONTROL DE MUSICA -->
+    <button
+        id="botonMusica"
+        class="boton-musica"
+        type="button"
+        aria-pressed="false"
+        aria-label="Activar música ambiental">
+        <span id="iconoMusica" aria-hidden="true">♫</span>
+        <span id="textoMusica">Activar música</span>
+    </button>
+</body>
+</html>
